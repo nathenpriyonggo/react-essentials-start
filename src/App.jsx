@@ -35,16 +35,20 @@ function App() {
         <section id='core-concepts'>
           <h2>Core Concepts</h2>
           <ul>
-            {CORE_CONCEPTS.map(concept => <CoreConcepts {...concept}/>)}
+            {CORE_CONCEPTS.map(concept => <CoreConcepts key={concept.title} {...concept}/>)}
           </ul>
         </section>
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onClick={() => handleClick("components")}>Components</TabButton>
-            <TabButton onClick={() => handleClick("jsx")}>JSX</TabButton>
-            <TabButton onClick={() => handleClick("props")}>Props</TabButton>
-            <TabButton onClick={() => handleClick("state")}>State</TabButton>
+            {Object.keys(EXAMPLES).map(key => 
+              <TabButton
+                key={key}
+                isSelected={selectedTopic === key} 
+                onClick={() => handleClick(key)}>
+                {EXAMPLES[key].title}
+              </TabButton>
+            )}
           </menu>
           {tabContent}
         </section>
