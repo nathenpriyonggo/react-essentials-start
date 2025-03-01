@@ -1,38 +1,33 @@
-import reactImg from './assets/react-core-concepts.png';
-import { CORE_CONCEPTS } from './data';
+import { useState } from 'react';
 
-const reactDescriptions = ['Fundamental', 'Crucial', 'Core'];
-
-function genRandomInt(max) {
-  return Math.floor(Math.random() * (max + 1));
-}
-
-function Header() {
-  const description = reactDescriptions[genRandomInt(2)];
-
-  return (
-    <header>
-        <img src={reactImg} alt="Stylized atom" />
-        <h1>React Essentials</h1>
-        <p>
-          {description} React concepts you will need for almost any app you are
-          going to build!
-        </p>
-      </header>
-  )
-}
-
-function CoreConcept({image, title, description}) {
-  return (
-    <li>
-      <img src={image} alt={title} />
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </li>
-  )
-}
+import { CORE_CONCEPTS, EXAMPLES } from './data';
+import Header from './components/Header/Header';
+import CoreConcepts from './components/CoreConcepts/CoreConcepts';
+import TabButton from './components/TabButton/TabButton';
 
 function App() {
+  const [ selectedTopic, setSelectedTopic ] = useState();
+
+  let tabContent = <p>Please select a topic.</p> ;
+
+  if (selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>
+            {EXAMPLES[selectedTopic].code}
+          </code>
+        </pre>
+      </div>
+    )
+  }
+
+  function handleClick(selectedButton) {
+    setSelectedTopic(selectedButton);
+  }
+
   return (
     <div>
       <Header />
@@ -40,8 +35,18 @@ function App() {
         <section id='core-concepts'>
           <h2>Core Concepts</h2>
           <ul>
-            {CORE_CONCEPTS.map(concept => <CoreConcept {...concept}/>)}
+            {CORE_CONCEPTS.map(concept => <CoreConcepts {...concept}/>)}
           </ul>
+        </section>
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+            <TabButton onClick={() => handleClick("components")}>Components</TabButton>
+            <TabButton onClick={() => handleClick("jsx")}>JSX</TabButton>
+            <TabButton onClick={() => handleClick("props")}>Props</TabButton>
+            <TabButton onClick={() => handleClick("state")}>State</TabButton>
+          </menu>
+          {tabContent}
         </section>
       </main>
     </div>
