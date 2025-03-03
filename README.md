@@ -1,6 +1,8 @@
 # React Essentials
 
 This is a simple React project that introduces fundamental React concepts that are essential for building modern web applications.
+<br><br>
+
 
 ## 🚀 Getting Started
 
@@ -8,6 +10,7 @@ This is a simple React project that introduces fundamental React concepts that a
 Make sure you have the following installed before running the project:
 - **Node.js** (Download from [nodejs.org](https://nodejs.org/))
 - **npm** or **yarn** (Comes with Node.js)
+<br>
 
 ### **Installation**
 1. Clone this repository:
@@ -27,13 +30,21 @@ Make sure you have the following installed before running the project:
    npm run dev
    ```
 5. Open ```http://localhost:5173/``` in your browser.
+<br>
 
 ## 🛠️ Built With
 - **React** - A JavaScript library for building user interfaces
 - **Vite** - A fast build tool for modern web projects
+<br>
+
+## 🖥️ Preview
+<p align="center"><img src="webPreview.png" width="700"></p>
+<br>
 
 ## 📜 License
 This project is open-source. Feel free to modify and expand upon it!
+<br><br>
+
 
 ---
 
